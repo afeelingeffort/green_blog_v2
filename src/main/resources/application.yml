@@ -18,9 +18,10 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: update #create
+      ddl-auto: create #update
       naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+        #physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: true
     show-sql: true
     properties:
