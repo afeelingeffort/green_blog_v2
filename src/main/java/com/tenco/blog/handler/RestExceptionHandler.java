@@ -44,6 +44,11 @@ public class RestExceptionHandler {
 //		return errorList;
 //	}
 	
+	@ExceptionHandler(value = IllegalArgumentException.class)
+	public String illegalArgumentException(IllegalArgumentException e) {
+		return "<h1>" + e.getMessage() + "</h1>";
+	}
+	
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
 	public ApiErrorResponse methodArgumentNotValidException(MethodArgumentNotValidException e) {
 		List<ExceptionFieldMessage> errorList = new ArrayList<>();

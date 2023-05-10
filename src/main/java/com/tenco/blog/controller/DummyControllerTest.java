@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,15 +94,15 @@ public class DummyControllerTest {
 
 	// JSON으로 던질 예정
 	// Update를 할 때 
-	// 1번 방식 기존 로직 처리
+	// 1번 방식 기존 로직 처리 (save 처리)
 	// 2번 방식 dirty checking (더티 체킹) 사용
 	@Transactional // 2번 방식 dirty checking
 	@PutMapping("/dummy/user/{id}") // 수정 !
-	public User updateUser(@Validated @PathVariable Integer id, @RequestBody User reqUser) {
+	public User updateUser(@PathVariable Integer id, @Validated @RequestBody User reqUser) {
 		
 		// 인증 검사, 유효성 검사
 		
-		// !!! 존재여부 확인
+		// !!! 수정을 하려면 존재여부 확인을 해야한다 !!!
 		// 영속화 된 데이터
 		User userEntity = userRepository.findById(id).orElseThrow(()->{
 			return new IllegalArgumentException("해당 유저가 존재하지 않습니다.");
@@ -123,10 +124,10 @@ public class DummyControllerTest {
 		return userEntity;
 	}
 	
-	@ExceptionHandler(value = IllegalArgumentException.class)
-	public String illegalArgumentException(IllegalArgumentException e) {
-		return "<h1>" + e.getMessage() + "</h1>";
+	@DeleteMapping("/dummy/user/{id}")
+	public String deleteUser(@PathVariable Integer id) {
+		userRepository.deleteById(id);
+		return "삭제 성공";
 	}
-	
 	
 }
