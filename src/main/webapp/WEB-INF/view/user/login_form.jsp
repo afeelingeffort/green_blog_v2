@@ -10,9 +10,6 @@
 			<label for="password">password : </label> <input type="password" class="form-control" name="password" id="password" value="1234">
 		</div>
 
-		<div class="form-group">
-			<label for="email">email : </label> <input type="text" class="form-control" name="email" id="email" value="abc@naver.com">
-		</div>
 		<button type="submit" id="btn--login" class="btn btn-primary">로그인</button>
 	</form>
 </div>

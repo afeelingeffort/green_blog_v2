@@ -3,10 +3,13 @@ package com.tenco.blog.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.tenco.blog.dto.ResponseDto;
 import com.tenco.blog.model.User;
 import com.tenco.blog.service.UserSevice;
 
@@ -36,8 +39,9 @@ public class UserController {
 	// 회원가입 처리 post -> RestApiController
 	@PostMapping("/auth/userProc")
 	public String saveUser(User user) {
-		int result = userSevice.createUser(user);
-		return "redirect:/user/loginPage";
+		userSevice.createUser(user);
+		
+		return "redirect:/";
 	}
 	
 	// 로그아웃 get
