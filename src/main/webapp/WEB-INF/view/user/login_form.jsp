@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<h1>로그인 화면</h1>
 <div class="container">
-	<form action="/temp/join2" method="post">
+	<form action="/auth/loginProc" method="post">
 		<div class="form-group">
 			<label for="username">username : </label> <input type="text" class="form-control" name="username" id="username" value="짱구">
 		</div>
@@ -14,11 +13,11 @@
 		<div class="form-group">
 			<label for="email">email : </label> <input type="text" class="form-control" name="email" id="email" value="abc@naver.com">
 		</div>
+		<button type="submit" id="btn--login" class="btn btn-primary">로그인</button>
 	</form>
-	<button type="submit" id="btn--login" class="btn btn-primary">로그인</button>
 </div>
 
-<script src="/js/user.js">
+<!-- <script src="/js/user.js">
 	
-</script>
+</script> -->
 <%@ include file="../layout/footer.jsp"%>
